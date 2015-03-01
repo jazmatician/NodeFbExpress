@@ -1,0 +1,36 @@
+﻿extends layout
+
+block content
+    div(ng-app='group')
+        h1.
+            Activity for #{name}
+        link(type='text/css', href='/css/ui-peppercorn/jquery-ui.min.css',  rel='stylesheet')
+        script(type='text/javascript', src='/js/lib/jquery.js')
+        script(type='text/javascript', src='/js/lib/jquery-ui.min.js')
+        script(type='text/javascript', src='http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js')
+        script(type="text/javascript", src="https://www.google.com/jsapi")
+        script(type='text/javascript', src='/js/client.js')
+
+        script(type='text/javascript').
+            $(function() {
+                debugger;
+                $(".dp").datepicker({dateFormat:"yy-mm-dd"});
+            });
+            google.load('visualization', '1', {'packages':['corechart']});
+            
+             
+        div(ng-controller='FormController as frm' )
+            form(ng-submit='frm.getData()' ng-init='frm.gid = #{id}')
+                {{frm.strLbl}}
+                span.dp
+                    input(type='text' ng-model='frm.startDate')
+                {{frm.endLbl}}
+                input(type='text' ng-model='frm.endDate').dp
+                br
+                input(type="text",ng-model='frm.gid')
+                input(type="submit",value="GITIT").btn.btn-primary
+                div#chart_div
+                div#resultsView
+                    span {{frm.startDate}} to {{frm.endDate}}
+                    br
+                    span {{frm.results}}
