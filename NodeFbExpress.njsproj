@@ -30,7 +30,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.js" />
     <Compile Include="public\css\ui-peppercorn\external\jquery\jquery.js" />
     <Compile Include="public\css\ui-peppercorn\jquery-ui.js" />
     <Compile Include="public\css\ui-peppercorn\jquery-ui.min.js" />
@@ -48,6 +47,7 @@
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
     <Compile Include="bin\www" />
+    <Compile Include="server.js" />
     <Content Include="config.json" />
     <Content Include="package.json" />
     <Content Include="public\pages\Chart.html" />

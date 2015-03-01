@@ -4,15 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var graph = require('facebook-complete');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var fb = require('./routes/fb');
 var api = require('./routes/api');
-
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/nodetest1');
 
 var app = express();
 
@@ -29,10 +24,9 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-    req.db = db;
-    next();
-});
+//app.use(function(req, res, next) {
+//    next();
+//});
 
 app.use('/', routes);
 app.use('/users', users);
