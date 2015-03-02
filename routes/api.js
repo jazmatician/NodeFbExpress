@@ -6,7 +6,15 @@ var _ = require('underscore');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/fbStats');
+var db_name = 'fbStats';
+//provide a sensible default for local development
+mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
+//take advantage of openshift env vars when available:
+if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+    mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+}
+var db = monk(mongodb_connection_string);
+
 
 router.get('/posts', function(req, res) {
     var groupId = req.query.gid;

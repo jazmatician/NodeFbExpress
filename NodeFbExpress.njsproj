@@ -79,6 +79,7 @@
     <Content Include="public\js\lib\angular.min.js.map" />
     <Content Include="README.md" />
     <Content Include="views\chart.jade" />
+    <Content Include="views\fbConfig.jade" />
     <Content Include="views\fbGroupData.jade" />
     <Content Include="views\newUser.jade" />
     <Content Include="views\fbGroups.jade" />

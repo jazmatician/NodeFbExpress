@@ -1,7 +1,19 @@
 ﻿(function() {
     var app = angular.module('group', []);
 
-    app.controller('FormController', ['$http', function($http) {
+    app.controller('ConfigController', ['$http', function ($http) {
+        var config = this;
+        config.client_id = "";
+        config.client_secret = "";
+        config.redirect_uri = "http://localhost:1337/fb/auth";
+        config.scope = "email, user_about_me, user_birthday, user_location, publish_stream";
+        config.saveConfig = function () {
+            //TODO: write an api endpoint to persist this data.
+            $http.post('/fb/config', config); //TODO: try it?
+        };
+    }]);
+    
+  app.controller('FormController', ['$http', function($http) {
         var posts = this;
         posts.strLbl = "Start Date";
         posts.endLbl = "End Date";

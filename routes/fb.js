@@ -6,7 +6,14 @@ var fs = require('fs');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/fbStats');
+var db_name = 'fbStats';
+//provide a sensible default for local development
+mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
+//take advantage of openshift env vars when available:
+if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+    mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+}
+var db = monk(mongodb_connection_string);
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -40,8 +47,21 @@ try {
     console.log('There has been an error parsing your JSON.');
     console.log(err);
 }
+router.get('/config', function (req, res) {
+    res.render('fbConfig', {
+        config: conf
+    });
+});
+
+router.post('/config', function (req, res) {
+    fs.writeFileSync('./config.json', JSON.stringify(_.omit(req.body, '__proto__')));
+});
 
 router.get('/auth', function (req, res) {
+    
+    if (!conf.client_id) {
+    
+    }
     
     // we don't have a code yet
     // so we'll redirect to the oauth dialog
