@@ -6,7 +6,7 @@ var fs = require('fs');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db_name = 'fbStats';
+var db_name = 'fbGroups';
 //provide a sensible default for local development
 mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
 //take advantage of openshift env vars when available:
