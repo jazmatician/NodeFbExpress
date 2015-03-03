@@ -8,9 +8,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var fb = require('./routes/fb');
 var api = require('./routes/api');
-
+console.log('done with the requires');
 var app = express();
-
+console.log('express started');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

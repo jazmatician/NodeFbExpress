@@ -6,7 +6,7 @@ var fs = require('fs');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db_name = 'fbGroups';
+var db_name = 'fbgroups';
 //provide a sensible default for local development
 mongodb_connection_string = 'mongodb://localhost:27017/' + db_name;
 //take advantage of openshift env vars when available:
@@ -20,7 +20,6 @@ router.get('/', function (req, res) {
     res.render('index', { title: 'Express' });
 });
 
-var fs = require('fs');
 /*
  * Configuration looks like the following:
  * 
@@ -37,11 +36,17 @@ var fs = require('fs');
 
 //var c = { "client_id": "YOUR_APP_ID","client_secret":"YOURSECRETHERE", "scope": "email, user_about_me, user_birthday, user_location, publish_stream", "redirect_uri": "http://localhost:1337/fb/auth" };
 //fs.writeFileSync('./config.json', JSON.stringify(c));
-
-var data = fs.readFileSync('./config.json', { encoding: 'utf8' }), conf;
+var configfile = process.env.OPENSHIFT_DATA_DIR || './';
+configfile += 'config.json';
+console.log('reading config');
+var data = fs.readFileSync(configfile, 'utf8'), conf;
 
 try {
     conf = JSON.parse(data);
+    var host = 'http://' + (process.env.OPENSHIFT_APP_DNS || "localhost");
+    host += ":" + (process.env.OPENSHIFT_NODEJS_PORT || '8080') + "/fb/auth";
+    console.log('redirect URI set to ' + host);
+    conf.redirect_uri = host;
 }
   catch (err) {
     console.log('There has been an error parsing your JSON.');
@@ -54,7 +59,7 @@ router.get('/config', function (req, res) {
 });
 
 router.post('/config', function (req, res) {
-    fs.writeFileSync('./config.json', JSON.stringify(_.omit(req.body, '__proto__')));
+    fs.writeFileSync(configfile, JSON.stringify(_.omit(req.body, '__proto__')));
 });
 
 router.get('/auth', function (req, res) {
