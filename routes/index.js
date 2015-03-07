@@ -1,10 +1,15 @@
 ﻿var express = require('express');
 var router = express.Router();
-var graph     = require('facebook-complete');
+var graph = require('facebook-complete');
+
+console.log('index.js loaded');
 /* GET home page. */
 
 router.get('/', function (req, res) {
+    console.log('index request heard');
     res.render('index', { title: 'Express' });
+    
+    console.log('index render request sent.');
 });
 
 //#region user management from walkthrough
