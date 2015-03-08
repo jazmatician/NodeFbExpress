@@ -47,7 +47,7 @@ try {
     var port = process.env.OPENSHIFT_NODEJS_PORT;
     console.log('port determined to be:' + port);
     port = port || '8080';
-    if (port != '80') {
+    if (host.indexOf("localhost")> 0 && port != '80') {
         console.log('adding port');
         host += ":" + port;
     } else console.log('skipping port');
