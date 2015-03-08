@@ -36,12 +36,8 @@
     <Compile Include="public\js\client.js" />
     <Compile Include="public\js\controllers.js" />
     <Compile Include="public\js\lib\angular.min.js" />
-    <Compile Include="public\js\lib\bootstrap.js" />
-    <Compile Include="public\js\lib\bootstrap.min.js" />
-    <Compile Include="public\js\lib\jquery-ui.js" />
-    <Compile Include="public\js\lib\jquery-ui.min.js" />
     <Compile Include="public\js\lib\jquery.js" />
-    <Compile Include="public\js\lib\line-chart.min.js" />
+    <Compile Include="public\js\lib\ui-bootstrap-tpls-0.12.1.min.js" />
     <Compile Include="routes\api.js" />
     <Compile Include="routes\fb.js" />
     <Compile Include="routes\index.js" />

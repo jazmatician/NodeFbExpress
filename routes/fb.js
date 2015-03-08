@@ -1,7 +1,7 @@
 ﻿var express = require('express');
 var router = express.Router();
 var graph = require('facebook-complete');
-var _ = require('underscore');
+var _ = require('lodash');
 var fs = require('fs');
 
 var mongo = require('mongodb');
@@ -44,7 +44,14 @@ var data = fs.readFileSync(configfile, 'utf8'), conf;
 try {
     conf = JSON.parse(data);
     var host = 'http://' + (process.env.OPENSHIFT_APP_DNS || "localhost");
-    host += ":" + (process.env.OPENSHIFT_NODEJS_PORT || '8080') + "/fb/auth";
+    var port = process.env.OPENSHIFT_NODEJS_PORT;
+    console.log('port determined to be:' + port);
+    port = port || '8080';
+    if (port != '80') {
+        console.log('adding port');
+        host += ":" + port;
+    } else console.log('skipping port');
+    host += "/fb/auth";
     console.log('redirect URI set to ' + host);
     conf.redirect_uri = host;
 }
