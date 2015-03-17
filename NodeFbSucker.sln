@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeFbExpress", "NodeFbExpress\NodeFbExpress.njsproj", "{8CC49877-B31E-408E-9DE4-1C8302A1FAF1}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "FbSucker.Acceptance.Tests", "D:\Dropbox\Visual Studio 2012\Projects\NodeFbSucker\FbSucker.Acceptance.Tests\FbSucker.Acceptance.Tests.njsproj", "{68ED5902-CFBB-4180-8CD4-A6924DF707C9}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "FBSucker.Server.Tests", "FBSucker.Server.Tests\FBSucker.Server.Tests.njsproj", "{E7A9C244-F4D5-4082-ABDC-CD0B651D57E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CC49877-B31E-408E-9DE4-1C8302A1FAF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC49877-B31E-408E-9DE4-1C8302A1FAF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC49877-B31E-408E-9DE4-1C8302A1FAF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC49877-B31E-408E-9DE4-1C8302A1FAF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68ED5902-CFBB-4180-8CD4-A6924DF707C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68ED5902-CFBB-4180-8CD4-A6924DF707C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68ED5902-CFBB-4180-8CD4-A6924DF707C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68ED5902-CFBB-4180-8CD4-A6924DF707C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A9C244-F4D5-4082-ABDC-CD0B651D57E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A9C244-F4D5-4082-ABDC-CD0B651D57E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A9C244-F4D5-4082-ABDC-CD0B651D57E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A9C244-F4D5-4082-ABDC-CD0B651D57E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
