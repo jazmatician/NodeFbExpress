@@ -2,7 +2,10 @@
 
 block content
   h1= title
-  p Welcome to #{title}
-  a(href='/fb/auth') click to log in to Facesmash
-  br
-  a(href='/userlist') see users
+  div(ng-app='app')    
+      script(type='text/javascript').
+        angular.module('app',[]);
+      p Welcome to #{title}
+      a(href='/fb/auth') click to log in to Facesmash
+      br
+      a(href='/userlist') see users

@@ -23,18 +23,15 @@ block content
             form(ng-submit='frm.getData()' ng-init='frm.gid = #{id}')
                 {{frm.strLbl}}
                 p.input-group
-                    input(type='text', ng-model='frm.startDate', class="form-control", datepicker-popup="yyyy-MM-dd",  min-mode='month', is-open="frm.opened", datepicker-options="frm.dateOptions", date-disabled="frm.disabled(date, mode)", ng-required="true", close-text="Close")
+                    input(type='text', ng-model='frm.startDate', class="form-control", datepicker-popup="MM/yyyy",  datepicker-mode="'month'", is-open="frm.opened", datepicker-options="frm.dateOptions", date-disabled="frm.disabled(date, mode)", ng-required="true", close-text="Close")
                     span.input-group-btn
                         button(type="button", ng-click="frm.open($event)").btn.btn-default
                             i.glyphicon.glyphicon-calendar
-                datepicker(ng-model="frm.startDate", datepicker-mode='month', show-weeks='false', min-mode='month').well.well-sm
-                {{frm.endLbl}}
-                input(type='text', ng-model='frm.endDate' )
+                datepicker(ng-model="frm.startDate", datepicker-mode="'month'", min-mode='month').well.well-sm
+                input(type='hidden', ng-model='frm.endDate')
                 br
-                input(type="text",ng-model='frm.gid')
-                input(type="submit",value="GITIT").btn.btn-primary
+                input(type="hidden",ng-model='frm.gid')
+                input(type="submit",value="Search").btn.btn-primary
                 div#chart_div
                 div#resultsView
-                    span {{frm.startDate | date:shortDate }} to {{frm.endDate}}
-                    br
                     span {{frm.results}}

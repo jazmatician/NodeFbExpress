@@ -7,7 +7,7 @@ console.log('index.js loaded');
 
 router.get('/', function (req, res) {
     console.log('index request heard');
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'FB Groups' });
     
     console.log('index render request sent.');
 });

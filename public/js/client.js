@@ -20,8 +20,8 @@
         posts.endLbl = "End Date";
         posts.results = '';
         // ReSharper disable UseOfImplicitGlobalInFunctionScope
-        posts.startDate = moment().subtract(2, 'days').format('YYYY-MM-DD');
-        posts.endDate = moment().format('YYYY-MM-DD');
+        posts.startDate = moment().date(1).format('YYYY-MM-DD');
+        posts.endDate = moment().date(1).add(1, 'months').format('YYYY-MM-DD');
         // ReSharper restore UseOfImplicitGlobalInFunctionScope
 
 
@@ -31,6 +31,8 @@
         };
 
         posts.dateOptions = {
+            minMode: 'month',
+            showButtonBar: false,
             formatYear: 'yy',
             startingDay: 1
         };
@@ -42,16 +44,16 @@
         };
 
         posts.getData = function() {
-                var query = "/api/posts?gid=" + posts.gid;
-                var start = moment(posts.startDate);
-                //var end = (!!posts.endDate) ? moment(posts.endDate) : start.add(1, 'month');
-                var end = start.clone().add(1, 'month');
+            var query = "/api/posts?gid=" + posts.gid;
+            var start = moment(posts.startDate);
+            //var end = (!!posts.endDate) ? moment(posts.endDate) : start.add(1, 'month');
+            var end = start.clone().add(1, 'month');
             query += (!!posts.startDate) ? '&startDate=' + start.format('YYYY-MM-DD') : '';
             query += (!!posts.endDate) ? '&endDate=' + end.format('YYYY-MM-DD') : '';
             $http.get(query).success(function(data, status) {
-                debugger;
                 posts.results = data;
 
+                // ReSharper disable UseOfImplicitGlobalInFunctionScope
                 var dt = new google.visualization.DataTable();
                 dt.addColumn('string', 'Author');
                 dt.addColumn('number', 'Posts');
@@ -60,18 +62,19 @@
                 dt.addRows(data);
                 var options = {
                     vAxes: {
-                            0: { format: '#,###' },
                         1: { format: '#,###' },
-                       2: { format: '#,###' }
+                        2: { format: '#,###' },
+                        3: { format: '#,###' }
                     },
-                    hAxis: {title: "User"},
-                                            seriesType: "bars",
-                                            series: { 2: { type: "line" }
-                },
-                title: 'Post Count and popularity by Author'
-            };
-                debugger;
+                    hAxis: { title: "User" },
+                    seriesType: "bars",
+                    series: {
+                        2: { type: "line" }
+                    },
+                    title: 'Post Count and popularity by Author'
+                };
                 var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                // ReSharper enable UseOfImplicitGlobalInFunctionScope
                 chart.draw(dt, options);
             });
         };
