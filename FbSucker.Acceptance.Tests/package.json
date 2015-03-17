@@ -1,0 +1,19 @@
+{
+  "name": "FbSucker.Acceptance.Tests",
+  "version": "0.0.0",
+  "description": "FbSucker.Acceptance.Tests",
+  "main": "app.js",
+  "author": {
+    "name": "mblackburn",
+    "email": ""
+  },
+  "devDependencies": {
+    "jasmine-spec-reporter": "<2.0.0",
+    "protractor": "~1.8.0"
+  },
+  "dependencies": {
+    "jasmine-reporters": "^1.0.1",
+    "jasmine-spec-reporter": "~1.1.2",
+    "protractor-html-screenshot-reporter": "*"
+  }
+}
