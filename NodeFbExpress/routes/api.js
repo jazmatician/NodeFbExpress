@@ -2,6 +2,7 @@
 var router = express.Router();
 var moment = require('moment');
 var fbr = require('../modules/fbretrieve');
+var Q = require('q');
 
 router.get('/usersOverTime', function (req, res) {
     var groupId = req.query.gid;
@@ -70,7 +71,8 @@ router.get('/posts', function(req, res) {
     var groupId = req.query.gid;
     var startDate = req.query.startDate;
     var endDate = req.query.endDate;
-    var result = fbr.posts(groupId, startDate, endDate);
+    var dbResult = Q.defer();
+    var result = fbr.posts(groupId, startDate, endDate, dbResult);
     result.then(function(d) {
          res.send(d);
     });

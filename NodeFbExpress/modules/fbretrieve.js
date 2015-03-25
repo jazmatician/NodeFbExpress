@@ -77,7 +77,7 @@ fbr.usersOverTime = function (req, res) {
     })
     );
 };
-fbr.posts = function(groupId, startDate, endDate) {
+fbr.posts = function(groupId, startDate, endDate, dbResult) {
     var query = '/' + groupId + '/feed?fields=id,from,likes.summary(true)';
     if (!!startDate) query += '&since=' + startDate;
     if (!!endDate) query += '&until=' + endDate;
@@ -94,7 +94,7 @@ fbr.posts = function(groupId, startDate, endDate) {
         return deferred.promise;
     }
 
-    return pGet(query).then(function(msg) {
+    pGet(query).then(function(msg) {
         postsC.find({ updated_time: { $gt: startDate, $lt: endDate } }, {}, function(e, docs) {
             var result = _.map(
                 _.groupBy(docs, function(x) { return x.from.name; }), function(val) {
@@ -107,9 +107,10 @@ fbr.posts = function(groupId, startDate, endDate) {
                     return partial;
                 });
             var resAsObject = _.map(result, function(val) { return [val.author, val.posts, val.likes, val.ratio]; });
-            return resAsObject;
+            dbResult.resolve(resAsObject);
         });
     }, console.error);
+    return dbResult.promise;
 };
 
 var beforeStart = function (item) {
